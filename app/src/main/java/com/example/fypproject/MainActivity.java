@@ -39,48 +39,63 @@ public class MainActivity extends AppCompatActivity {
    // ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main);
-        String email = binding.dataEmail.getText().toString();
-        String password = binding.dataPassword.getText().toString();
+        mAuth.getInstance().signOut();
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String email = binding.loginEmail.getText().toString();
+                String password = binding.loginPassword.getText().toString();
 
+                mAuth.signInWithEmailAndPassword(email, password)
+                  .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                      @Override
+                      public void onComplete(@NonNull Task<AuthResult> task) {
+                          if (task.isSuccessful()) {
+                              Toast.makeText(getApplicationContext(), "Login successful!!", Toast.LENGTH_LONG).show();
+                              // hide the progress bar
+                              // if sign-in is successful/
+                              // intent to home activity
+                              myEdit.putString("loginEmail",email);
+                              myEdit.commit();
+                            Intent intent = new Intent(MainActivity.this, UserMainPost.class);
+                            startActivity(intent);
+                          }
+                          else{
+                              Toast.makeText(getApplicationContext(), "Login failed!!", Toast.LENGTH_LONG).show();
 
+                          }
 
-
-//                mAuth.signInWithEmailAndPassword(email, password)
-//                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    Toast.makeText(getApplicationContext(), "Login successful!!", Toast.LENGTH_LONG).show();
-//                                            // hide the progress bar
-//                                            // if sign-in is successful
-//                                            // intent to home activity
-//                                    Intent intent = new Intent(MainActivity.this, UserMainPost.class);
-//                                    startActivity(intent);
-//                                }
-//                                else {
-//                                    // sign-in failed
-//                                    Toast.makeText(getApplicationContext(), "Login failed!!", Toast.LENGTH_LONG).show();
-//                                    // hide the progress bar
-//                                        }
-//                                    }
-//                                });
+                      }
+                  });
             }
-
-
         });
+
+//
+
+
+
+
         binding.tvRegister.setOnClickListener((new View.OnClickListener() {
             public final void onClick(View it) {
                 Intent myIntent = new Intent((Context)MainActivity.this, SignUp.class);
                MainActivity.this.startActivity(myIntent);
           }
         }));
+        binding.tvForgetPassword.setOnClickListener((new View.OnClickListener() {
+            public final void onClick(View it) {
+                Intent myIntent = new Intent((Context)MainActivity.this, ForgetPassword.class);
+                MainActivity.this.startActivity(myIntent);
+            }
+        }));
+//
+
+
 
 //        btnLogin.setOnClickListener((View.OnClickListener)(new View.OnClickListener() {
 //            public final void onClick(View it) {

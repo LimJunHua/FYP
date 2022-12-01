@@ -25,7 +25,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dataPassword"
+
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.979" />
 
         <TextView
@@ -88,7 +89,7 @@
                 android:text="Password :" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/loginPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -115,7 +116,7 @@
                 android:text="Email :" />
 
             <EditText
-                android:id="@+id/dataEmail"
+                android:id="@+id/loginEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

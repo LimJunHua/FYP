@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -53,7 +54,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private ActivitySignUpBinding binding;
     private DatabaseReference databases;
 
-    private FirebaseAuth mAuth;
+
 
 
     @Override
@@ -62,7 +63,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_sign_up);
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
         binding= DataBindingUtil.setContentView(this,R.layout.activity_sign_up);
 
 
@@ -71,6 +72,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
             @Override
             public void onClick(View view) {
+                Boolean Error = false;
                 String AccUsername, icnumber,phoneNumber, email, AccPassword,comfirmPassword;
                 AccUsername = binding.signupName.getText().toString().trim();
                 icnumber = binding.signupICNumber.getText().toString().trim();
@@ -78,15 +80,61 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 email = binding.signupEmail.getText().toString();
                 AccPassword = binding.signupPassword.getText().toString().trim();
                 comfirmPassword = binding.signupComfirmPassword.getText().toString().trim();
-                myEdit.putString("username", AccUsername);
-                myEdit.putString("icnumber", icnumber);
-                myEdit.putString("phoneNumber",phoneNumber);
-                myEdit.putString("email", email);
-                myEdit.putString("password", AccPassword);
-                myEdit.commit();
-                sendEmail();
+                if(AccUsername.isEmpty()){
+                    binding.signupName.setError("Username is Required");
+                    Error = true;
+                }
+                if(icnumber.isEmpty()){
+                    binding.signupICNumber.setError("IC Number is Required");
+                    Error = true;
+                }
+                if(!Patterns.PHONE.matcher(phoneNumber).matches()) {
+                    binding.signupPhoneNumber.setError("Phone format Error");
+                    Error = true;
+                }
+//                if(phoneNumber.length() == 11 ||phoneNumber.length() ==10){
+//                    binding.signupPhoneNumber.setError("Phone number must be 10 or 11");
+//                    Error = true;
+//                }
+                if(phoneNumber.isEmpty()){
+                    binding.signupPhoneNumber.setError("Phone Number is Required");
+                    Error = true;
+                }
+
+                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    binding.signupEmail.setError("Email format Error");
+                    Error = true;
+                }
+                if(email.isEmpty()){
+                    binding.signupEmail.setError("Email is Required");
+                    Error = true;
+                }
+                if(AccPassword.isEmpty()){
+                    binding.signupPassword.setError("Password is Required");
+                    Error = true;
+                }
+                if(comfirmPassword.isEmpty()){
+                    binding.signupComfirmPassword.setError("Comfirm Password is Required");
+                }
+                if(!AccPassword.equals(comfirmPassword)){
+                    binding.signupComfirmPassword.setError("Password does not match");
+                    Error = true;
+                }
+                if(Error == false){
+                    myEdit.putString("username", AccUsername);
+                    myEdit.putString("icnumber", icnumber);
+                    myEdit.putString("phoneNumber",phoneNumber);
+                    myEdit.putString("email", email);
+                    myEdit.putString("password", AccPassword);
+                    myEdit.commit();
+                    sendEmail();
                     Intent intent = new Intent(SignUp.this, verificationRegister.class);
                     startActivity(intent);
+                }
+
+
+
+
 
 
 //                binding.tvEmail.setText(binding.signupEmail.getText().toString());

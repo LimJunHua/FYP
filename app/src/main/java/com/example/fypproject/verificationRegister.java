@@ -172,6 +172,7 @@ public class verificationRegister extends AppCompatActivity {
                                 // hide the progress bar
                                 // if sign-in is successful
                                 // intent to home activity
+                                sh.edit().clear().commit();
                                 mAuth.getInstance().signOut();
                                 Intent intent = new Intent(verificationRegister.this, MainActivity.class);
                                 startActivity(intent);
