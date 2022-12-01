@@ -168,16 +168,17 @@ public class verificationRegister extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(getApplicationContext(), "Registration  successful!!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getBaseContext(), "Registration  successful!!", Toast.LENGTH_LONG).show();
                                 // hide the progress bar
                                 // if sign-in is successful
                                 // intent to home activity
+                                mAuth.getInstance().signOut();
                                 Intent intent = new Intent(verificationRegister.this, MainActivity.class);
                                 startActivity(intent);
                             }
                             else {
                                 // sign-in failed
-                                Toast.makeText(getApplicationContext(), "Registration  failed!!", Toast.LENGTH_LONG).show();// hide the progress bar
+                                Toast.makeText(getBaseContext(), "Reason can not be blank", Toast.LENGTH_SHORT).show();// hide the progress bar
                             }
                         }
                     });

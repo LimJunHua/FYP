@@ -95,23 +95,5 @@
             android:maxLength="1"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/test1"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="618dp" />
-
-    <TextView
-        android:id="@+id/test1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="104dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="625dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

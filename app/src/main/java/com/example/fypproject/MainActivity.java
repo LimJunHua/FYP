@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
 //                mAuth.signInWithEmailAndPassword(email, password)
 //                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 //                            @Override
@@ -116,16 +120,16 @@ public class MainActivity extends AppCompatActivity {
 //        }));
 
     }
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null){
-//            Intent myIntent = new Intent((Context)MainActivity.this, UserMainPost.class);
-//            MainActivity.this.startActivity(myIntent);
-//        }
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent myIntent = new Intent((Context)MainActivity.this, UserMainPost.class);
+            MainActivity.this.startActivity(myIntent);
+        }
+    }
 
 
 //
