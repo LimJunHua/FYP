@@ -176,6 +176,7 @@ public class verificationRegister extends AppCompatActivity {
                                 mAuth.getInstance().signOut();
                                 Intent intent = new Intent(verificationRegister.this, MainActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                             else {
                                 // sign-in failed

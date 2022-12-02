@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#6B000000"
+    android:backgroundTint="#6B000000"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,33 +18,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="chat" />
+            android:backgroundTint="@android:color/black"
+            android:text="chat"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnPostNav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="post" />
+            android:backgroundTint="@android:color/black"
+            android:text="post"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnMusicNav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="music" />
+            android:backgroundTint="@android:color/black"
+            android:text="music"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnSettingNav"
             android:layout_width="13dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:backgroundTint="@android:color/black"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
@@ -49,3 +61,4 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 </LinearLayout>
+</layout>
