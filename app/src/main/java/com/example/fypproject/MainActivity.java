@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main);
-//        mAuth.getInstance().signOut();
+        //mAuth.getInstance().signOut();
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent myIntent = new Intent((Context)MainActivity.this, UserMainPost.class);
+            Intent myIntent = new Intent((Context)MainActivity.this, UserMainFragment.class);
             MainActivity.this.startActivity(myIntent);
         }
     }
