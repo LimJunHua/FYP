@@ -1,44 +1,30 @@
 package com.example.fypproject;
 
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-
 import android.view.View;
-import android.webkit.MimeTypeMap;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fypproject.databinding.ActivityUserMainPostBinding;
+import com.example.fypproject.databinding.ActivityBackupPostBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class UserMainPost extends AppCompatActivity {
+public class BackupPost extends AppCompatActivity {
 
-    ActivityUserMainPostBinding binding;
+    ActivityBackupPostBinding binding;
     Uri imageUri;
     StorageReference storageReference;
     ProgressDialog progressDialog;
@@ -46,7 +32,7 @@ public class UserMainPost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityUserMainPostBinding.inflate(getLayoutInflater());
+        binding = ActivityBackupPostBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.selectImagebtn.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +77,7 @@ public class UserMainPost extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                         binding.firebaseimage.setImageURI(null);
-                        Toast.makeText(UserMainPost.this,"Successfully Uploaded",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BackupPost.this,"Successfully Uploaded",Toast.LENGTH_SHORT).show();
                         if (progressDialog.isShowing())
                             progressDialog.dismiss();
 
@@ -103,7 +89,7 @@ public class UserMainPost extends AppCompatActivity {
 
                         if (progressDialog.isShowing())
                             progressDialog.dismiss();
-                        Toast.makeText(UserMainPost.this,"Failed to Upload",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BackupPost.this,"Failed to Upload",Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -114,9 +100,7 @@ public class UserMainPost extends AppCompatActivity {
     private void selectImage() {
 
         Intent intent = new Intent();
-
         intent.setType("image/*");
-
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent,100);
 
@@ -129,9 +113,7 @@ public class UserMainPost extends AppCompatActivity {
         if (requestCode == 100 && data != null && data.getData() != null){
 
             imageUri = data.getData();
-
             binding.firebaseimage.setImageURI(imageUri);
-
 
 
         }
