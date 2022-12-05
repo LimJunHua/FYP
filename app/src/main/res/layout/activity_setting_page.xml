@@ -122,7 +122,7 @@
             android:textAllCaps="false" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/SwitchNight"
+            android:id="@+id/switchCompat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

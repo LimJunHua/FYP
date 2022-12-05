@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                               // intent to home activity
                               myEdit.putString("loginEmail",email);
                               myEdit.commit();
-                            Intent intent = new Intent(MainActivity.this, UserMainFragment.class);
+                            Intent intent = new Intent(MainActivity.this, UserChat.class);
                             startActivity(intent);
                           }
                           else{
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent myIntent = new Intent((Context)MainActivity.this, UserMainFragment.class);
+            Intent myIntent = new Intent((Context)MainActivity.this, UserChat.class);
             MainActivity.this.startActivity(myIntent);
         }
     }
