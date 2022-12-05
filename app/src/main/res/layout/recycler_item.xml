@@ -12,23 +12,22 @@
 
 
     <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:id="@+id/icon_view"
-        android:layout_width="95dp"
-        android:layout_height="94dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/music_icon" />
+        android:src="@drawable/music_icon"/>
 
     <TextView
-        android:id="@+id/music_title_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:id="@+id/music_title_text"
         android:layout_toEndOf="@id/icon_view"
-        android:ellipsize="end"
-        android:maxLines="1"
         android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="48sp"
-        tools:text="Music" />
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:text="Music"
+        android:textColor="@color/black"/>
 
 </RelativeLayout>
