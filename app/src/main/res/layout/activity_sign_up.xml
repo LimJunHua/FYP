@@ -26,30 +26,18 @@
             android:backgroundTint="#2BEFB7"
             />
 
-        <Button
-            android:id="@+id/btnReturn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="60dp"
-            android:layout_marginBottom="128dp"
-            android:text="Back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/btnRegister"
-            android:textColor="@android:color/white"
-            app:backgroundTint="@null"
-            android:backgroundTint="#2BEFB7"/>
-
         <LinearLayout
             android:layout_width="398dp"
             android:layout_height="46dp"
             android:layout_marginBottom="40dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.921"
-            tools:layout_editor_absoluteX="6dp">
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            app:layout_constraintVertical_bias="0.921">
 
             <TextView
                 android:id="@+id/tvName"
@@ -73,6 +61,8 @@
             android:layout_height="46dp"
             android:layout_marginBottom="40dp"
             android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.538"
@@ -101,6 +91,8 @@
             android:layout_height="46dp"
             android:layout_marginBottom="40dp"
             android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.538"
@@ -129,6 +121,8 @@
             android:layout_height="51dp"
             android:layout_marginBottom="40dp"
             android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.538"
@@ -157,6 +151,8 @@
             android:layout_height="46dp"
             android:layout_marginBottom="40dp"
             android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.538"
@@ -184,6 +180,8 @@
             android:layout_height="46dp"
             android:layout_marginBottom="40dp"
             android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             app:layout_constraintBottom_toTopOf="@+id/btnRegister"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.461"
@@ -191,7 +189,7 @@
 
             <TextView
                 android:id="@+id/textViewComfirmPassword"
-                android:layout_width="66dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Confirm Password" />
@@ -204,6 +202,20 @@
                 android:ems="10"
                 android:inputType="textPassword" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="128dp"
+            android:text="Back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.543"
+            app:layout_constraintStart_toEndOf="@+id/btnRegister"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@null"
+            android:backgroundTint="#2BEFB7"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

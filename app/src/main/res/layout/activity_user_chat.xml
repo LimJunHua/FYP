@@ -21,8 +21,8 @@
             android:id="@+id/imageView4"
             android:layout_width="91dp"
             android:layout_height="78dp"
-            app:srcCompat="@drawable/logo"
-            tools:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/white_logo"
+            tools:srcCompat="@drawable/white_logo" />
 
         <TextView
             android:id="@+id/tvBrand"
@@ -44,8 +44,8 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:clickable="true"
-            app:srcCompat="@drawable/setting_icon"
-            tools:srcCompat="@drawable/setting_icon" />
+            app:srcCompat="@drawable/black_setting"
+            tools:srcCompat="@drawable/black_setting" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@android:color/black"
+            android:backgroundTint="@color/grey"
             android:text="@string/chat"
             android:textColor="@android:color/white" />
 
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@android:color/black"
+            android:backgroundTint="@color/grey"
             android:text="post"
             android:textColor="@android:color/white" />
 
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@android:color/black"
+            android:backgroundTint="@color/grey"
             android:text="music"
             android:textColor="@android:color/white" />
 

@@ -176,10 +176,10 @@ public class verificationRegister extends AppCompatActivity {
                     String email = sh.getString("email", "");
                     String name = sh.getString("username", "");
                     String phoneNumber = sh.getString("phoneNumber", "");
-                    String iCNumber = sh.getString("icnumber", "");
+                    String icNumber = sh.getString("icnumber", "");
                     String password = sh.getString("password", "");
                     String RawEmail = email.replace(".",",");
-                    user user = new user(name, iCNumber, phoneNumber, RawEmail, password, mAuth.getUid());
+                    user user = new user(name, icNumber, phoneNumber, RawEmail, password, mAuth.getUid());
                     mDatabase.child("users").child(RawEmail).setValue(user);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override

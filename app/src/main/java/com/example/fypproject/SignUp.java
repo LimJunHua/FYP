@@ -210,7 +210,15 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent = new Intent(SignUp.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
     private void sendEmail() {
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
