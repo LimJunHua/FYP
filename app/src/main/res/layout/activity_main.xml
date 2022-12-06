@@ -72,13 +72,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/white_logo" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="376dp"
             android:layout_height="55dp"
+
             android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             app:layout_constraintBottom_toTopOf="@+id/btnLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +109,11 @@
             android:id="@+id/linearLayout"
             android:layout_width="376dp"
             android:layout_height="55dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+
             android:layout_marginTop="52dp"
+
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -4,6 +4,8 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
@@ -35,16 +37,20 @@ import kotlin.jvm.internal.Ref;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    SharedPreferences sharedPreferences;
     private ActivityMainBinding binding;
+    SwitchCompat switchCompat;
    // ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+
+         sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main);
+
         //mAuth.getInstance().signOut();
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
                               // if sign-in is successful/
                               // intent to home activity
                               myEdit.putString("loginEmail",email);
+                              myEdit.putString("loginPassword",password);
                               myEdit.commit();
+
                             Intent intent = new Intent(MainActivity.this, UserChat.class);
                             startActivity(intent);
                           }
@@ -138,11 +146,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+
         // Check if user is signed in (non-null) and update UI accordingly.
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             Intent myIntent = new Intent((Context)MainActivity.this, UserChat.class);
             MainActivity.this.startActivity(myIntent);
+            finish();
         }
     }
 
