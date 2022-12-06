@@ -22,9 +22,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+
 public class verificationRegister extends AppCompatActivity {
     private ActivityVerificationRegisterBinding binding;
     private DatabaseReference mDatabase;
+    private PreferenceManager preferenceManager;
     private FirebaseAuth mAuth;
 
     @Override
@@ -32,12 +37,15 @@ public class verificationRegister extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification_register);
+
+        setListeners();
         binding= DataBindingUtil.setContentView(this,R.layout.activity_verification_register);
         SharedPreferences sh = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         TextView msg= binding.tvMSGcode;
         int passcode = sh.getInt("code", 0);
         String code = "" + passcode;
         String email = sh.getString("email","");
+
 
         if (email == null){
             email = "not email import";
@@ -155,7 +163,9 @@ public class verificationRegister extends AppCompatActivity {
                 int code6 = Integer.parseInt(binding.tvNumber6.getText().toString());
                 String verifyCode = String.format("%d%d%d%d%d%d",code1,code2,code3,code4,code5,code6);
                 if(verifyCode.equals(code)) {
+                    
                     mDatabase = FirebaseDatabase.getInstance().getReference();
+
                     String email = sh.getString("email", "");
                     String name = sh.getString("username", "");
                     String phoneNumber = sh.getString("phoneNumber", "");
@@ -172,10 +182,12 @@ public class verificationRegister extends AppCompatActivity {
                                 // hide the progress bar
                                 // if sign-in is successful
                                 // intent to home activity
+                                signUp();
                                 sh.edit().clear().commit();
                                 mAuth.getInstance().signOut();
                                 Intent intent = new Intent(verificationRegister.this, MainActivity.class);
                                 startActivity(intent);
+
                                 finish();
                             }
                             else {
@@ -191,6 +203,46 @@ public class verificationRegister extends AppCompatActivity {
                     Toast.makeText(verificationRegister.this, "Wrong Passcode", Toast.LENGTH_SHORT).show();
                 }
             }
+
+
         });
     }
+
+    private void showToast(String message){
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+    private void setListeners() {
+        binding.btnVerify.setOnClickListener(v -> onBackPressed());
+    }
+    private void signUp() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        preferenceManager = new PreferenceManager(getApplicationContext());
+        SharedPreferences sh = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        FirebaseFirestore storeDatabase = FirebaseFirestore.getInstance();
+        HashMap<String, Object> users = new HashMap<>();
+        String email = sh.getString("email", "");
+        String name = sh.getString("name", "");
+        String password = sh.getString("password", "");
+        users.put(Constants.KEY_NAME, name);
+        users.put(Constants.KEY_EMAIL, email);
+        users.put(Constants.KEY_PASSWORD, password);
+        storeDatabase.collection(Constants.KEY_COLLECTION_USERS)
+                .add(users)
+                .addOnSuccessListener(documentReference -> {
+                    preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                    preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
+                    preferenceManager.putString(Constants.KEY_EMAIL, email);
+                    preferenceManager.putString(Constants.KEY_NAME, name);
+                    preferenceManager.putString(Constants.KEY_PASSWORD, password);
+
+                })
+                .addOnFailureListener(exception -> {
+                    showToast(exception.getMessage());
+                });
+
+    }
+
+
+
 }

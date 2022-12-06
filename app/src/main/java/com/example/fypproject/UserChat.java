@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import  com.example.fypproject.databinding.ActivityUserChatBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +13,9 @@ import android.view.View;
 
 public class UserChat extends AppCompatActivity {
     ActivityUserChatBinding binding;
+    private DatabaseReference databases;
+    FirebaseFirestore storeDatabase = FirebaseFirestore.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,5 +49,7 @@ public class UserChat extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 }

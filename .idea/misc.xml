@@ -9,9 +9,11 @@
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYP/app/src/main/res/layout/activity_verification_register.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/drawable-v24/ic_baseline_pause_circle_outline_24.xml" value="0.2385" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2385" />
+        <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/drawable-v24/messagebackgroun.xml" value="0.2385" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2385" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/activity_music_player.xml" value="0.25" />
+        <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/activity_specificchat.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/activity_user_chat.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/activity_user_main_fragment.xml" value="0.271875" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/activity_user_main_post.xml" value="0.27291666666666664" />
@@ -20,7 +22,9 @@
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/fragment_music.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/fragment_post.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/fragment_setting.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/recieverchatlayout.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/recycler_item.xml" value="0.25" />
+        <entry key="..\:/Users/CJ/AndroidStudioProjects/FYPProject/app/src/main/res/layout/senderchatlayout.xml" value="0.27291666666666664" />
       </map>
     </option>
   </component>
