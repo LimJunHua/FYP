@@ -17,20 +17,27 @@ import android.widget.Toast;
 
 import com.example.fypproject.databinding.ActivityVerificationRegisterBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class verificationRegister extends AppCompatActivity {
     private ActivityVerificationRegisterBinding binding;
     private DatabaseReference mDatabase;
-    private PreferenceManager preferenceManager;
     private FirebaseAuth mAuth;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
+    private FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +179,7 @@ public class verificationRegister extends AppCompatActivity {
                     String iCNumber = sh.getString("icnumber", "");
                     String password = sh.getString("password", "");
                     String RawEmail = email.replace(".",",");
-                    user user = new user(name, iCNumber, phoneNumber, RawEmail, password);
+                    user user = new user(name, iCNumber, phoneNumber, RawEmail, password, mAuth.getUid());
                     mDatabase.child("users").child(RawEmail).setValue(user);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -182,12 +189,11 @@ public class verificationRegister extends AppCompatActivity {
                                 // hide the progress bar
                                 // if sign-in is successful
                                 // intent to home activity
-                                signUp();
+                                storeDataToFireStore();
                                 sh.edit().clear().commit();
                                 mAuth.getInstance().signOut();
                                 Intent intent = new Intent(verificationRegister.this, MainActivity.class);
                                 startActivity(intent);
-
                                 finish();
                             }
                             else {
@@ -213,33 +219,28 @@ public class verificationRegister extends AppCompatActivity {
     }
 
     private void setListeners() {
-        binding.btnVerify.setOnClickListener(v -> onBackPressed());
+//        binding.btnVerify.setOnClickListener(v -> onBackPressed());
     }
-    private void signUp() {
+    private void storeDataToFireStore() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        preferenceManager = new PreferenceManager(getApplicationContext());
         SharedPreferences sh = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-        FirebaseFirestore storeDatabase = FirebaseFirestore.getInstance();
-        HashMap<String, Object> users = new HashMap<>();
+        DocumentReference documentReference = firebaseFirestore.collection("Users").document(mAuth.getUid());
+
         String email = sh.getString("email", "");
         String name = sh.getString("name", "");
-        String password = sh.getString("password", "");
-        users.put(Constants.KEY_NAME, name);
-        users.put(Constants.KEY_EMAIL, email);
-        users.put(Constants.KEY_PASSWORD, password);
-        storeDatabase.collection(Constants.KEY_COLLECTION_USERS)
-                .add(users)
-                .addOnSuccessListener(documentReference -> {
-                    preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
-                    preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
-                    preferenceManager.putString(Constants.KEY_EMAIL, email);
-                    preferenceManager.putString(Constants.KEY_NAME, name);
-                    preferenceManager.putString(Constants.KEY_PASSWORD, password);
+        Map<String, Object> users = new HashMap<>();
+        users.put("name", name);
+        users.put("email", email);
+        users.put("uid",mAuth.getUid());
+        users.put("status", "Online");
 
-                })
-                .addOnFailureListener(exception -> {
-                    showToast(exception.getMessage());
-                });
+        documentReference.set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+
+            }
+        });
+
 
     }
 
