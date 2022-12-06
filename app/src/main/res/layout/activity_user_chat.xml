@@ -86,19 +86,67 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="604dp"
-        android:orientation="horizontal"
+    <RelativeLayout
+        android:layout_width="411dp"
+        android:layout_height="603dp"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
-        <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+        tools:context=".chatActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginTop="0dp"
+            android:background="#3D4E4C">
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/include"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@id/toolbar"
+            android:backgroundTint="#3D4E4C"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorHeight="3dp"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="#77a3a7">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chats">
+
+            </com.google.android.material.tabs.TabItem>
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status">
+
+            </com.google.android.material.tabs.TabItem>
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/fragmentcontainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recyclerview">
+            android:layout_below="@id/include"
+            android:layout_marginTop="0dp">
 
-        </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
+        </androidx.viewpager.widget.ViewPager>
+
+
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

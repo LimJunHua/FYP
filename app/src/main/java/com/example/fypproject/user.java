@@ -24,7 +24,7 @@ public class user {
 
     public void setName(String name) {this.name = name;}
 
-    public String getuId() {return uId;}
+    public String getUid() {return uId;}
 
     public void setUid(String uId) {this.uId = uId;}
 }
