@@ -3,14 +3,12 @@ package com.example.fypproject;
 public class firebasemodel {
 
     String name;
-    String image;
     String uid;
     String status;
 
 
-    public firebasemodel(String name, String image, String uid, String status) {
+    public firebasemodel(String name, String uid, String status) {
         this.name = name;
-        this.image = image;
         this.uid = uid;
         this.status = status;
     }
@@ -24,14 +22,6 @@ public class firebasemodel {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getUid() {

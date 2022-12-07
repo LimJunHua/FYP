@@ -179,7 +179,7 @@ public class verificationRegister extends AppCompatActivity {
                     String icNumber = sh.getString("icnumber", "");
                     String password = sh.getString("password", "");
                     String RawEmail = email.replace(".",",");
-                    user user = new user(name, icNumber, phoneNumber, RawEmail, password, mAuth.getUid());
+                    user user = new user(name, icNumber, phoneNumber, RawEmail, password);
                     mDatabase.child("users").child(RawEmail).setValue(user);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -224,7 +224,7 @@ public class verificationRegister extends AppCompatActivity {
     private void storeDataToFireStore() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         SharedPreferences sh = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-        DocumentReference documentReference = firebaseFirestore.collection("Users").document(mAuth.getUid());
+        DocumentReference documentReference = firebaseFirestore.collection("users").document(mAuth.getUid());
 
         String email = sh.getString("email", "");
         String name = sh.getString("name", "");

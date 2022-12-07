@@ -40,6 +40,7 @@
             android:id="@+id/btnSetting"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="18dp"
             android:layout_weight="1"
             android:clickable="true"
             app:srcCompat="@drawable/black_setting"

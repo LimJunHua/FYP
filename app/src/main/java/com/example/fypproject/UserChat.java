@@ -2,6 +2,7 @@ package com.example.fypproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -18,7 +19,7 @@ import android.view.View;
 public class UserChat extends AppCompatActivity {
     ActivityUserChatBinding binding;
     TabLayout tabLayout;
-    TabItem mchat,mcall,mstatus;
+    TabItem mchat;
     ViewPager viewPager;
     PagerAdapter pagerAdapter;
     androidx.appcompat.widget.Toolbar mtoolbar;
@@ -32,6 +33,10 @@ public class UserChat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_chat);
 
+
+        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseFirestore= FirebaseFirestore.getInstance();
+        RecyclerView recyclerViewChat = findViewById(R.id.recycleViewChat);
 
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_user_chat);
@@ -62,10 +67,14 @@ public class UserChat extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        tabLayout=findViewById(R.id.include);
-        mchat=findViewById(R.id.chat);
-        mstatus=findViewById(R.id.status);
-        viewPager=findViewById(R.id.fragmentcontainer);
+
+
+
+//        tabLayout=findViewById(R.id.include);
+//        mchat=findViewById(R.id.chat);
+//        viewPager=findViewById(R.id.fragmentcontainer);
+
+
 
 
 
